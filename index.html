@@ -1,0 +1,792 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#100b18">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+  <title>The Petition | The Singlehood Preservation Act</title>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap');
+
+    :root {
+      --bg: #100b18;
+      --panel: #1b1228;
+      --purple: #a78bfa;
+      --bright: #c4b5fd;
+      --text: #f4efff;
+      --muted: #b5a9c9;
+      --border: rgba(196, 181, 253, 0.16);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      background:
+        radial-gradient(ellipse at 50% 0%, #392051 0%, transparent 48%),
+        var(--bg);
+      color: var(--text);
+      font-family: "DM Sans", sans-serif;
+      line-height: 1.7;
+    }
+
+    header {
+      max-width: 1000px;
+      margin: auto;
+      padding: 25px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .brand {
+      font: 600 1.4rem "Playfair Display", serif;
+      letter-spacing: 1px;
+    }
+
+    .brand span,
+    .accent {
+      color: var(--bright);
+    }
+
+    .status {
+      border: 1px solid var(--border);
+      background: rgba(167, 139, 250, 0.08);
+      color: var(--bright);
+      padding: 5px 12px;
+      border-radius: 30px;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    main {
+      max-width: 900px;
+      margin: auto;
+      padding: 65px 24px 80px;
+    }
+
+    .hero {
+      text-align: center;
+      margin-bottom: 45px;
+    }
+
+    .eyebrow,
+    .section-label {
+      color: var(--purple);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+    }
+
+    .eyebrow {
+      margin-bottom: 15px;
+    }
+
+    h1, h2 {
+      font-family: "Playfair Display", serif;
+      font-weight: 500;
+      line-height: 1.2;
+    }
+
+    h1 {
+      font-size: clamp(2.6rem, 7vw, 4.7rem);
+      margin-bottom: 20px;
+    }
+
+    h1 span {
+      display: block;
+      color: var(--bright);
+      font-style: italic;
+    }
+
+    .intro {
+      max-width: 600px;
+      margin: auto;
+      color: var(--muted);
+    }
+
+    .card {
+      background: linear-gradient(145deg, #241633, #170f22);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 30px;
+      margin-bottom: 22px;
+      box-shadow: 0 15px 50px rgba(0, 0, 0, 0.13);
+    }
+
+    .section-label {
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      font-size: 1.8rem;
+      margin-bottom: 18px;
+    }
+
+    .details {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 24px;
+    }
+
+    .detail-box {
+      background: rgba(167, 139, 250, 0.055);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px;
+      min-width: 0;
+    }
+
+    .detail-box small {
+      display: block;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
+    .detail-box strong {
+      overflow-wrap: anywhere;
+    }
+
+    .petition-text {
+      white-space: pre-line;
+      color: #e4dced;
+    }
+
+    .signature {
+      color: var(--bright);
+      font: italic 1.2rem "Playfair Display", serif;
+      margin-top: 24px;
+    }
+
+    /* WATCHLIST */
+
+    .watchlist-intro {
+      color: var(--muted);
+      margin-bottom: 23px;
+    }
+
+    .people-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .person-tile {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      min-width: 0;
+      padding: 22px 12px;
+      border: 1px solid rgba(167, 139, 250, 0.24);
+      border-radius: 14px;
+      background: linear-gradient(160deg, #302044, #170f22);
+      transition: transform 0.25s, border-color 0.25s,
+        box-shadow 0.25s;
+    }
+
+    .person-tile:hover {
+      transform: translateY(-5px);
+      border-color: var(--purple);
+      box-shadow: 0 8px 25px rgba(139, 92, 246, 0.16);
+    }
+
+    .person-icon {
+      font-size: 2rem;
+      margin-bottom: 8px;
+    }
+
+    .person-tile h3 {
+      font-size: 0.98rem;
+      margin-bottom: 12px;
+      overflow-wrap: anywhere;
+    }
+
+    .relationship-tag {
+      color: var(--bright);
+      background: rgba(167, 139, 250, 0.14);
+      border-radius: 6px;
+      padding: 4px 8px;
+      font-size: 0.63rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .review-status {
+      color: #d8b4fe;
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    .classified {
+      border-style: dashed;
+      opacity: 0.8;
+    }
+
+    .watchlist-footer {
+      margin-top: 22px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 0.8rem;
+      font-style: italic;
+    }
+
+    /* SIGNATURE LIST */
+
+    .agreement-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      margin-bottom: 22px;
+    }
+
+    .agreement-header h2 {
+      margin-bottom: 0;
+    }
+
+    .count {
+      color: var(--bright);
+      background: rgba(167, 139, 250, 0.12);
+      border: 1px solid var(--border);
+      border-radius: 30px;
+      padding: 5px 12px;
+      font-size: 0.85rem;
+      white-space: nowrap;
+    }
+
+    .signer-list {
+      list-style: none;
+      display: grid;
+      gap: 10px;
+    }
+
+    .signer-list li {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      min-width: 0;
+      background: rgba(255, 255, 255, 0.025);
+      border: 1px solid rgba(196, 181, 253, 0.09);
+      padding: 12px 15px;
+      border-radius: 10px;
+      animation: appear 0.3s ease;
+    }
+
+    .avatar {
+      width: 38px;
+      height: 38px;
+      flex-shrink: 0;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: #392653;
+      color: var(--bright);
+      font-weight: 700;
+    }
+
+    .signer-name {
+      font-weight: 600;
+      overflow-wrap: anywhere;
+    }
+
+    .signer-note {
+      display: block;
+      color: var(--muted);
+      font-size: 0.77rem;
+    }
+
+    .empty {
+      color: var(--muted);
+      justify-content: center;
+      text-align: center;
+      padding: 24px !important;
+    }
+
+    /* SIGNATURE FORM */
+
+    form {
+      display: grid;
+      gap: 16px;
+    }
+
+    label {
+      display: block;
+      font-size: 0.88rem;
+      margin-bottom: 7px;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 14px;
+      border: 1px solid #49365f;
+      border-radius: 10px;
+      background: #130d1d;
+      color: var(--text);
+      font: inherit;
+      outline: none;
+    }
+
+    input[type="text"]:focus {
+      border-color: var(--purple);
+      box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.12);
+    }
+
+    button {
+      border: none;
+      border-radius: 10px;
+      padding: 14px 18px;
+      background: linear-gradient(135deg, #c4b5fd, #8b5cf6);
+      color: #160d25;
+      font: inherit;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.2s, filter 0.2s;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.1);
+    }
+
+    button:focus-visible {
+      outline: 2px solid white;
+      outline-offset: 3px;
+    }
+
+    .message {
+      min-height: 1.5em;
+      color: var(--bright);
+      font-size: 0.88rem;
+    }
+
+    .fine-print {
+      color: var(--muted);
+      font-size: 0.77rem;
+      margin-top: 14px;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      text-align: center;
+      padding: 28px 20px;
+      color: var(--muted);
+      font-size: 0.8rem;
+    }
+
+    h1, h2, h3, .section-title, .logo {
+        font-family: 'Bebas Neue', sans-serif;
+        letter-spacing: 1.5px;
+    }
+
+    @keyframes appear {
+      from {
+        opacity: 0;
+        transform: translateY(6px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 650px) {
+      main {
+        padding: 45px 16px 60px;
+      }
+
+      .card {
+        padding: 23px 18px;
+      }
+
+      .people-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .details {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .people-grid {
+        grid-template-columns: 1fr;
+      }
+
+      header {
+        padding: 20px 14px;
+      }
+
+      .brand {
+        font-size: 1.1rem;
+      }
+
+      .status {
+        font-size: 0.6rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="brand">THE <span>PETITION.</span></div>
+    <div class="status">Open for signatures</div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <p class="eyebrow">A formal request · An informal cause</p>
+      <h1>The Petition for <span>The Lovers</span></h1>
+      <p class="intro">
+        A matter of utmost importance has arisen. In the interest
+        of friendship, singles, and in own terms "nanlalamang", a petition is hereby presented.
+      </p>
+    </section>
+
+    <!-- 01 / PETITION DETAILS -->
+    <section class="card">
+      <p class="section-label">01 / Petition Details</p>
+      <h2>At a Glance</h2>
+
+      <div class="details">
+        <div class="detail-box">
+          <small>Filed by</small>
+          <strong id="filer">Lyrxon Dipanalo</strong>
+        </div>
+
+        <div class="detail-box">
+          <small>Addressed to</small>
+          <strong id="petitioned">The Romantically Involved</strong>
+        </div>
+
+        <div class="detail-box">
+          <small>Date filed</small>
+          <strong id="dateFiled">August 2026</strong>
+        </div>
+
+        <div class="detail-box">
+          <small>Petition status</small>
+          <strong>Awaiting consideration</strong>
+        </div>
+      </div>
+    </section>
+
+    <!-- 01.5 / WATCHLIST -->
+    <section class="card">
+      <p class="section-label">01.5 / The Watchlist</p>
+      <h2>Persons of Interest</h2>
+
+      <p class="watchlist-intro">
+        The following individuals are allegedly having a romantic experience.
+      </p>
+
+      <div class="people-grid" id="peopleGrid">
+        <!-- stautuses: TO BE BANNED, WITH *name*, UNDER REVIEW, WITH *undisclosed* -->
+        <div class="person-tile">
+          <div class="person-icon"></div>
+          <h3>KewjiKuji</h3>
+          <span class="relationship-tag">WITH reiiikirei</span>
+          <span class="review-status">TO BE BANNED</span>
+        </div>
+
+        <div class="person-tile">
+          <div class="person-icon"></div>
+          <h3>reiiikirei</h3>
+          <span class="relationship-tag">WITH KewjiKuji</span>
+          <span class="review-status">TO BE BANNED</span>
+        </div>
+
+        <div class="person-tile">
+          <div class="person-icon"></div>
+          <h3>choklateee</h3>
+          <span class="relationship-tag">ROMANTICALLY SUSPECT</span>
+          <span class="review-status">UNDER REVIEW</span>
+        </div>
+
+        <div class="person-tile">
+          <div class="person-icon"></div>
+          <h3>itsBrianJorge</h3>
+          <span class="relationship-tag">ROMANTICALLY SUSPECT</span>
+          <span class="review-status">UNDER REVIEW</span>
+        </div>
+
+        <div class="person-tile">
+          <div class="person-icon"></div>
+          <h3>jezslay</h3>
+          <span class="relationship-tag">WITH kex_javier</span>
+          <span class="review-status">TO BE BANNED</span>
+        </div>
+
+        <div class="person-tile classified">
+          <div class="person-icon"></div>
+          <h3>Identity Pending</h3>
+          <span class="relationship-tag">CASE FILED</span>
+          <span class="review-status">INVESTIGATION ONGOING</span>
+        </div>
+
+      </div>
+
+      <p class="watchlist-footer">
+        ⚖️ All cases are part of a fictional, humorous petition.
+        No actual romantic relationships shall be hated and legally affected.
+      </p>
+    </section>
+
+    <!-- 02 / PETITION STATEMENT -->
+    <section class="card">
+      <p class="section-label">02 / The Statement</p>
+      <h2>Whereas, We Humbly Request...</h2>
+
+      <p class="petition-text">I am creating this petition to address a serious and deeply concerning issue: people who are happily in love while I am not.
+
+Honestly, how is that fair? Some people are out here enjoying their love life, going on dates, receiving sweet messages, and having someone to talk to every day, while the rest of us are just trying to survive. I believe it is time we take a stand against this clear act of emotional imbalance.
+
+As the creator of this petition, I hereby propose that all individuals who are currently in a relationship, or in a potential romantic experience, be banned. This is not necessarily because I hate seeing people happy, but because there should be limits to how much happiness one person can display in front of someone who has none.
+
+Of course, this petition is not meant to attack anyone personally (or is it?). I simply believe that a little consideration for the single population would be greatly appreciated. Is it really too much to ask for peace without being reminded that other people have romantic partners?
+
+THEREFORE, I am calling for the implementation of a strict No Lovelife Policy. No excessive couple talk, no unnecessary romantic flexing, and absolutely no making me feel like the only person who failed to unlock this particular achievement in life.
+
+By signing this petition, you agree to support this entirely serious, completely reasonable, and definitely not emotionally motivated campaign to ban people who have a love life.
+
+Thank you for your understanding. Your cooperation is greatly appreciated, especially if you are single.</p>
+
+      <p class="signature">Respectfully submitted,</p>
+      <p id="signatureName">Your Name Here, Petitioner</p>
+    </section>
+
+    <!-- 03 / AGREEMENT LIST -->
+    <section class="card">
+      <div class="agreement-header">
+        <div>
+          <p class="section-label">03 / The Signatories</p>
+          <h2>Those in Agreement</h2>
+        </div>
+
+        <div class="count">
+          <span id="signerCount">0</span> agreed
+        </div>
+      </div>
+
+      <ul class="signer-list" id="signerList" aria-live="polite">
+        <li class="empty">
+          No signatures yet. Be the first to agree.
+        </li>
+      </ul>
+    </section>
+
+    <!-- 04 / SIGN THE PETITION -->
+    <section class="card">
+      <p class="section-label">04 / Add Your Name</p>
+      <h2>Sign the Petition</h2>
+
+      <p style="color: var(--muted); margin-bottom: 22px;">
+        Stand for fairness. Stand for singles.
+        Add your name to this entirely unofficial cause.
+      </p>
+
+      <form id="signForm">
+        <div>
+          <label for="signerName">Your name or display name</label>
+          <input
+            type="text"
+            id="signerName"
+            name="signerName"
+            placeholder="Enter your name..."
+            maxlength="60"
+            autocomplete="off"
+            required
+          >
+        </div>
+
+        <button type="submit">
+          ✦ &nbsp; I Agree to This Petition
+        </button>
+
+        <p class="message" id="formMessage" role="status"></p>
+      </form>
+
+      <p class="fine-print">
+        For entertainment only. Signatures are stored online and
+        are visible to other visitors. Please use a display name
+        if you prefer not to reveal your identity.
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    <p>THE PETITION. · Established in the name of humor and fun.</p>
+    <p>Unofficial, unserious, and absolutely not legally binding.</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    // SUPABASE SETTINGS
+    // Replace the placeholder below with your "sb_publishable_..." key.
+    // Never put an sb_secret_ or service_role key in this file.
+    const SUPABASE_URL = "https://qoootmzfgpjkeqrrmrxr.supabase.co";
+    const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_647bbKg9eklbkYFr385Dvw_nXqcVMLf";
+
+    const PETITIONER = "xXLyrx0nM4pAgmH4lXx";
+    const ADDRESSED_TO = "The Romantically Involved";
+
+    const filer = document.getElementById("filer");
+    const petitioned = document.getElementById("petitioned");
+    const signatureName = document.getElementById("signatureName");
+    const dateFiled = document.getElementById("dateFiled");
+
+    filer.textContent = PETITIONER;
+    petitioned.textContent = ADDRESSED_TO;
+    signatureName.textContent = PETITIONER + ", Petitioner";
+    dateFiled.textContent = new Date().toLocaleDateString(undefined, {
+      year: "numeric",
+      month: "long",
+      day: "numeric"
+    });
+
+    const form = document.getElementById("signForm");
+    const nameInput = document.getElementById("signerName");
+    const signerList = document.getElementById("signerList");
+    const signerCount = document.getElementById("signerCount");
+    const formMessage = document.getElementById("formMessage");
+    const submitButton = form.querySelector('button[type="submit"]');
+
+    const supabaseClient = window.supabase.createClient(
+      SUPABASE_URL,
+      SUPABASE_PUBLISHABLE_KEY
+    );
+
+    let signers = [];
+
+    function renderSigners() {
+      signerList.replaceChildren();
+      signerCount.textContent = signers.length;
+
+      if (signers.length === 0) {
+        const empty = document.createElement("li");
+        empty.className = "empty";
+        empty.textContent = "No signatures yet. Be the first to agree.";
+        signerList.appendChild(empty);
+        return;
+      }
+
+      signers.forEach((signer) => {
+        const name = signer.name;
+        const item = document.createElement("li");
+
+        const avatar = document.createElement("div");
+        avatar.className = "avatar";
+        avatar.setAttribute("aria-hidden", "true");
+        avatar.textContent = name.charAt(0).toUpperCase();
+
+        const details = document.createElement("div");
+
+        const signerName = document.createElement("span");
+        signerName.className = "signer-name";
+        signerName.textContent = name;
+
+        const note = document.createElement("span");
+        note.className = "signer-note";
+        note.textContent = "Agrees with this petition";
+
+        details.append(signerName, note);
+        item.append(avatar, details);
+        signerList.appendChild(item);
+      });
+    }
+
+    async function loadSigners() {
+      signerList.innerHTML = '<li class="empty">Loading signatures...</li>';
+
+      const { data, error } = await supabaseClient
+        .from("petition_signers")
+        .select("id, name, created_at")
+        .order("created_at", { ascending: true });
+
+      if (error) {
+        console.error("Unable to load signatures:", error);
+        signerList.innerHTML =
+          '<li class="empty">Could not load signatures. Please refresh the page.</li>';
+        formMessage.textContent =
+          "Unable to connect to the petition database. Please try again later.";
+        return;
+      }
+
+      signers = data || [];
+      renderSigners();
+    }
+
+    form.addEventListener("submit", async function(event) {
+      event.preventDefault();
+
+      const name = nameInput.value.trim();
+
+      if (!name) {
+        formMessage.textContent = "Please enter a name first.";
+        return;
+      }
+
+      if (name.length > 60) {
+        formMessage.textContent = "Names must be 60 characters or fewer.";
+        return;
+      }
+
+      const alreadySigned = signers.some(
+        signer => signer.name.toLowerCase() === name.toLowerCase()
+      );
+
+      if (alreadySigned) {
+        formMessage.textContent =
+          "This name has already signed the petition.";
+        return;
+      }
+
+      submitButton.disabled = true;
+      submitButton.textContent = "Recording signature...";
+      formMessage.textContent = "";
+
+      const { error } = await supabaseClient
+        .from("petition_signers")
+        .insert([{ name }]);
+
+      if (error) {
+        console.error("Unable to save signature:", error);
+        formMessage.textContent =
+          error.code === "23505"
+            ? "This name may have already signed."
+            : "Your signature could not be saved. Please try again.";
+      } else {
+        formMessage.textContent =
+          "Signature recorded! Welcome to the cause. 💜";
+        form.reset();
+        await loadSigners();
+        nameInput.focus();
+      }
+
+      submitButton.disabled = false;
+      submitButton.innerHTML = "✦ &nbsp; I Agree to This Petition";
+    });
+
+    loadSigners();
+  </script>
+</body>
+</html>
